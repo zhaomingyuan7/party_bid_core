@@ -17,5 +17,3 @@ Activity.prototype.create = function(activity_name){
 Activity.prototype.active = function(activity_name){
     localStorage.current_activity = activity_name;
 }
-
-//prototype 属性使您有能力向对象添加属性和方法。Activity.prototype.name=value
