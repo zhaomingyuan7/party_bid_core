@@ -34,10 +34,8 @@ describe("Bidding", function () {
                 ]
             }
         ];
-//        console.log(two_activities[1],'lllll')
         activities = two_activities;
         localStorage.activities = JSON.stringify(activities);
-//        console.log(activities[1],'lllll')
         localStorage.current_activity = "second activity";
         localStorage.current_bid = "竞价1";
         localStorage.is_bidding = "";
@@ -60,6 +58,9 @@ describe("Bidding", function () {
         expect(activities[1].bids[0].biddings[0].name).toBe("仝键");
         expect(activities[1].bids[0].biddings[0].phone).toBe(phone_no);
         expect(activities[1].bids[0].biddings[0].price).toBe("12");
+        console.log(activities[1].bids.length,'111')
+        console.log(activities[1].bids[0].biddings[0].name,'222')
+        console.log(activities[1].bids[0].biddings[0].phone,'333')
     });
 
     it("should bid failed when it is not on bidding", function () {
@@ -105,7 +106,7 @@ describe("Bidding", function () {
         notify_sms_received(sms_json);
 
         var activities = JSON.parse(localStorage.activities);
-        console.log(activities[1].bids[0])
+//        console.log(activities[1].bids[0])
         expect(activities[1].bids[0].biddings.length).toBe(1);
         expect(activities[1].bids[0].biddings[0].name).toBe("仝键");
         expect(activities[1].bids[0].biddings[0].phone).toBe(phone_no);
