@@ -1,15 +1,13 @@
-function bid(first_activity){
-    this.name = '竞价1';
-    this.bids = [];
+function Bid(first_activity){
+    this.name = "竞价1";
+    this.biddings = [];
 }
-
-bid.create_new_bid = function(first_activity){
-    console.log('pppppppp')
-    var bid = new bid(first_activity)
+Bid.create_new_bid = function(first_activity){
+    var bid = new Bid("first activity");
     var activities = JSON.parse(localStorage.activities);
-    activities = _.map(activities, function(activity){
-       activity.name == localStorage.current_activity ? activity.bids.push(bid) : '';
-             return activity
+    activities = _.map(activities, function(activities){
+        activities.name == localStorage.current_activity ? activities.bids.push(bid) : '';
+        return activities
     });
     localStorage.setItem('activities',JSON.stringify(activities));
 }
