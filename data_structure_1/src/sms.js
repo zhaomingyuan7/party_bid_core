@@ -7,6 +7,7 @@ function notify_sms_received(sms_json){
             SignUp.save_sign_up_sms(sms_json)
         },
         JJ: function(){
+            SaveBid(sms_json);
 
         }
     }

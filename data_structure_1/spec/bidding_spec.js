@@ -34,8 +34,10 @@ describe("Bidding", function () {
                 ]
             }
         ];
+//        console.log(two_activities[1],'lllll')
         activities = two_activities;
         localStorage.activities = JSON.stringify(activities);
+//        console.log(activities[1],'lllll')
         localStorage.current_activity = "second activity";
         localStorage.current_bid = "竞价1";
         localStorage.is_bidding = "";
