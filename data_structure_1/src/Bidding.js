@@ -35,3 +35,15 @@ Bidding.is_sign_phone = function(){
         function(activity){return activity.phone == bidding.phone});
 
 }
+Bidding.transform_bids_to_view_model = function(name){
+    var activities = JSON.parse(localStorage.activities)
+    var current_activity = _.filter(activities, function(activity){
+        return activity.name == name;
+    });
+    var bids = current_activity[0].bids;
+    localStorage.bids = JSON.stringify(bids);
+    return bids;
+}
+Bidding.transform_biddings_to_view_model = function(name,bid){
+
+}
