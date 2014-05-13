@@ -58,9 +58,6 @@ describe("Bidding", function () {
         expect(activities[1].bids[0].biddings[0].name).toBe("仝键");
         expect(activities[1].bids[0].biddings[0].phone).toBe(phone_no);
         expect(activities[1].bids[0].biddings[0].price).toBe("12");
-        console.log(activities[1].bids.length,'111')
-        console.log(activities[1].bids[0].biddings[0].name,'222')
-        console.log(activities[1].bids[0].biddings[0].phone,'333')
     });
 
     it("should bid failed when it is not on bidding", function () {

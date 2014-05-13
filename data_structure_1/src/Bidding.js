@@ -45,5 +45,10 @@ Bidding.transform_bids_to_view_model = function(name){
     return bids;
 }
 Bidding.transform_biddings_to_view_model = function(name,bid){
-
+    var bids =  _.filter(Bidding.transform_bids_to_view_model(name),function(bids){
+        return bids.name == bid
+    })
+    var current_bids = bids[0].biddings;
+    localStorage.current_bids = JSON.stringify(current_bids);
+    return current_bids;
 }
