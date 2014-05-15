@@ -50,6 +50,7 @@ describe("Bidding", function () {
         notify_sms_received(sms_json);
 
         var activities = JSON.parse(localStorage.activities);
+        console.log(activities,'444444444444444')
         expect(activities["1"].biddings["竞价1"].length).toBe(1);
 //
         expect(activities["1"].biddings["竞价1"][0].phone).toBe(phone_no);

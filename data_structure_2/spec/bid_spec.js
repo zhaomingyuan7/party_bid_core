@@ -26,7 +26,6 @@ describe("Bid", function () {
         var activities = JSON.parse(localStorage.activities);
         expect(activities["0"].bids.length).toBe(1);
         expect(JSON.stringify(activities["0"].biddings["竞价1"])).toBe("[]");
-        console.log(JSON.stringify(activities["0"].biddings["竞价1"]),'99999999')
     });
 
 
