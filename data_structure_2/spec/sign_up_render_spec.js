@@ -33,7 +33,6 @@ describe("SignUp Render", function () {
         };
         var activity_ids = ["0", "1"]
         localStorage.activities = JSON.stringify(two_activities);
-        console.log(two_activities)
         localStorage.activity_ids = JSON.stringify(activity_ids);
         localStorage.current_activity = "1";
     });
@@ -50,10 +49,6 @@ describe("SignUp Render", function () {
         expect(sign_ups[0].name).toBe("仝键");
         expect(sign_ups[1].name).toBe("于硕");
         expect(sign_ups[2].name).toBe("吴京川");
-        console.log(sign_ups.length,'111')
-        console.log(sign_ups[0].name,'222')
-        console.log(sign_ups[1].name,'333')
-        console.log(sign_ups[2].name,'444')
 
     });
 

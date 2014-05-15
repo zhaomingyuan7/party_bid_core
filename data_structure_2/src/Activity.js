@@ -5,12 +5,15 @@ function Activity(activity_name){
     this.biddings = {};
 }
 Activity.prototype.create = function(activity_name){
-    var activities = JSON.parse(localStorage.getItem(activities)) || [];
-    var activity= {};
-    activity.name = activity_name;
-    activity.sign_ups = [];
-    activity.bids = [];
-    activities.biddings = {};
-    activities.push(activity);
-    localStorage.setItem('activities',JSON.stringify(activities));
+    var activities = JSON.parse(localStorage.activities);
+    var activity_ids = JSON.parse(localStorage.getItem("activity_ids"))
+    var activity_id = Activity.activity_ids();
+    activities[activity_id] = this;
+    activity_ids.push(activity_id);
+    localStorage.activities = JSON.stringify(activities);
+    localStorage.activity_ids = JSON.stringify(activity_ids);
+}
+Activity.activity_ids = function(){
+    var activity_ids = JSON.parse(localStorage.getItem("activity_ids"))
+    return activity_ids.length;
 }
