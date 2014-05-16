@@ -24,7 +24,6 @@ describe("Activity", function () {
         expect(JSON.stringify(activities_json["0"].bids)).toBe("[]");
         expect(JSON.stringify(activities_json["0"].biddings)).toBe("{}");
         expect(localStorage.current_activity).toBe("0");
-        console.log(localStorage.current_activity,'activity_ids[2]')
     });
 
     it("should activity id generator increase with creating activity", function () {
@@ -50,8 +49,8 @@ describe("Activity", function () {
 
         expect(activity_ids.length).toBe(3);
         expect(activity_ids[0]).toBe("0");
+        console.log(activity_ids[0])
         expect(activity_ids[1]).toBe("1");
         expect(activity_ids[2]).toBe("2");
     });
-
 });
