@@ -7,7 +7,7 @@ function notify_sms_received(sms_json){
 
         },
         JJ: function(){
-
+            Bidding.save_bid_message(sms_json)
         }
     }
     if(if_sign[bm_and_jj]){
