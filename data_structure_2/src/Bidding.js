@@ -30,9 +30,9 @@ Bidding.save_bid_message = function (sms_json) {
             function (activity) {
                 return activity.phone == bid_information.phone
             })) {
-            if(!_.find(current_bidding,function(activities){
+            if (!_.find(current_bidding, function (activities) {
                 return activities.phone == bid_information.phone
-            })){
+            })) {
                 activities[activity].biddings[bid].push(bid_information)
                 localStorage.setItem('activities', JSON.stringify(activities));
                 return
@@ -40,13 +40,50 @@ Bidding.save_bid_message = function (sms_json) {
         }
     }
 }
-Bidding.transform_bids_to_view_model = function(activity){
+Bidding.transform_bids_to_view_model = function (activity) {
     var activities = JSON.parse(localStorage.activities)
     var bids = [];
     bids = activities[activity].bids;
     localStorage.bids = JSON.stringify(bids);
     return bids;
 }
-Bidding.transform_biddings_to_view_model = function(activity,bid){
+Bidding.transform_biddings_to_view_model = function (activity, bid) {
+    return Bidding.count_price_first_information(activity, bid)
 
+}
+Bidding.sortBy_price = function (activity, bid) {
+    return _.sortBy(Bidding.is_current_bidding(activity, bid),
+        function (name) {
+            return (name.price)
+        })
+}
+Bidding.is_current_bidding = function (activity, bid) {
+    var activities = JSON.parse(localStorage.activities);
+    var current_bidding = [];
+    current_bidding = activities[activity].biddings[bid];
+    localStorage.current_bidding = JSON.stringify(current_bidding);
+    return current_bidding;
+}
+Bidding.price_num_count = function (activity, bid) {
+    return _.countBy(Bidding.is_current_bidding(activity, bid),
+        function (name) {
+            return name.price
+        });
+}
+Bidding.price_and_num = function (activity, bid) {
+    return _.map(Bidding.price_num_count(activity, bid), function (value, key) {
+        return {"price": key, "count": value}
+    })
+}
+Bidding.count_price_one = function (activity, bid) {
+    return _.find(Bidding.price_and_num(activity, bid),
+        function (name) {
+            return name.count == 1
+        })
+}
+Bidding.count_price_first_information = function (activity, bid) {
+    return _.find(Bidding.is_current_bidding(activity, bid),
+        function (name) {
+            return name.price == Bidding.count_price_one(activity, bid).price
+        })
 }

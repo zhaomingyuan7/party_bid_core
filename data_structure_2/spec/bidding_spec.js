@@ -98,7 +98,6 @@ describe("Bidding", function () {
 
 
         var activities = JSON.parse(localStorage.activities);
-        console.log(activities["1"].biddings["竞价1"].length)
         expect(activities["1"].biddings["竞价1"].length).toBe(1);
 
         expect(activities["1"].biddings["竞价1"][0].phone).toBe(phone_no);
