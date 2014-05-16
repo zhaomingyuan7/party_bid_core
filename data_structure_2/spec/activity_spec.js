@@ -17,13 +17,14 @@ describe("Activity", function () {
 
         var activities_json = JSON.parse(localStorage.getItem("activities")) || {};
         var activity_ids = JSON.parse(localStorage.getItem("activity_ids"))
-
+        console.log(activities_json,'999')
         expect(activity_ids.length).toBe(1);
         expect(activities_json["0"].name).toBe(activity_name);
         expect(JSON.stringify(activities_json["0"].sign_ups)).toBe("[]");
         expect(JSON.stringify(activities_json["0"].bids)).toBe("[]");
         expect(JSON.stringify(activities_json["0"].biddings)).toBe("{}");
         expect(localStorage.current_activity).toBe("0");
+        console.log(localStorage.current_activity,'activity_ids[2]')
     });
 
     it("should activity id generator increase with creating activity", function () {

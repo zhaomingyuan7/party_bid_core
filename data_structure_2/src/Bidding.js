@@ -48,7 +48,14 @@ Bidding.transform_bids_to_view_model = function (activity) {
     return bids;
 }
 Bidding.transform_biddings_to_view_model = function (activity, bid) {
-    return Bidding.count_price_first_information(activity, bid)
+    var biddings = {}
+    biddings = Bidding.count_price_first_information(activity, bid);
+    biddings.name = Bidding.successful_of_people_name(activity, bid);
+    localStorage.biddings = JSON.stringify(biddings);
+    var successful_infornation = [];
+    successful_infornation.push(biddings);
+    localStorage.successful_infornation = JSON.stringify(successful_infornation);
+    return successful_infornation;
 
 }
 Bidding.sortBy_price = function (activity, bid) {
@@ -86,4 +93,15 @@ Bidding.count_price_first_information = function (activity, bid) {
         function (name) {
             return name.price == Bidding.count_price_one(activity, bid).price
         })
+}
+Bidding.successful_of_people_name = function(activity, bid){
+
+    var activities = JSON.parse(localStorage.activities);
+    var sign_ups=activities[activity].sign_ups;
+    var phone = Bidding.count_price_first_information(activity, bid).phone
+    var people_name = _.find(sign_ups,function(sign_ups){
+        return sign_ups.phone ==  phone
+    })
+    return people_name.name
+
 }
