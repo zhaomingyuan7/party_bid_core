@@ -37,15 +37,16 @@ Bidding.save_bid_message = function (sms_json) {
                 localStorage.setItem('activities', JSON.stringify(activities));
                 return
             }
-
-//            activities[activity].biddings[bid].push(bid_information)
-//            localStorage.setItem('activities', JSON.stringify(activities));
         }
     }
 }
-Bidding.transform_bids_to_view_model = function (name, bid) {
-
+Bidding.transform_bids_to_view_model = function(activity){
+    var activities = JSON.parse(localStorage.activities)
+    var bids = [];
+    bids = activities[activity].bids;
+    localStorage.bids = JSON.stringify(bids);
+    return bids;
 }
-Bidding.transform_bids_to_view_model = function (name) {
+Bidding.transform_biddings_to_view_model = function(activity,bid){
 
 }
