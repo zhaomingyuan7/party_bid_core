@@ -52,7 +52,6 @@ describe("Bidding", function () {
         var activities = JSON.parse(localStorage.activities);
 
         expect(activities["1"].biddings["竞价1"].length).toBe(1);
-//
         expect(activities["1"].biddings["竞价1"][0].phone).toBe(phone_no);
         expect(activities["1"].biddings["竞价1"][0].price).toBe("12");
     });
@@ -97,7 +96,9 @@ describe("Bidding", function () {
         notify_sms_received(sms_json);
         notify_sms_received(sms_json);
 
+
         var activities = JSON.parse(localStorage.activities);
+        console.log(activities["1"].biddings["竞价1"].length)
         expect(activities["1"].biddings["竞价1"].length).toBe(1);
 
         expect(activities["1"].biddings["竞价1"][0].phone).toBe(phone_no);

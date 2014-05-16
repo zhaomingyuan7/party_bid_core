@@ -20,13 +20,26 @@ Bidding.save_bid_message = function (sms_json) {
     var bid_information = {}
     bid_information.price = biddings[bid].price = sms_json.messages[0].message.substr(2).replace(/\s/g, '');
     bid_information.phone = biddings[bid].phone = sms_json.messages[0].phone;
+    var current_biddings = []
+    var current_bidding = {}
+    current_bidding.phone = ''
+    current_bidding.price = ''
+    current_bidding = activities[activity].biddings[bid]
     if (localStorage.is_bidding == 'true') {
         if (_.find(activities[activity].sign_ups,
             function (activity) {
                 return activity.phone == bid_information.phone
             })) {
-            activities[activity].biddings[bid].push(bid_information)
-            localStorage.setItem('activities', JSON.stringify(activities));
+            if(!_.find(current_bidding,function(activities){
+                return activities.phone == bid_information.phone
+            })){
+                activities[activity].biddings[bid].push(bid_information)
+                localStorage.setItem('activities', JSON.stringify(activities));
+                return
+            }
+
+//            activities[activity].biddings[bid].push(bid_information)
+//            localStorage.setItem('activities', JSON.stringify(activities));
         }
     }
 }
