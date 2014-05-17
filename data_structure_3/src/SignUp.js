@@ -24,3 +24,10 @@ SignUp.is_repeating = function(sms_json){
         return name.activity_id == activity && name.phone == sms_json.messages[0].phone
     })
 }
+SignUp.render_sign_ups = function(name){
+    var sign_ups = JSON.parse(localStorage.sign_ups);
+    var current_activity = _.filter(sign_ups, function(sign_up){
+        return sign_up.activity_id == name;
+    });
+    return current_activity;
+}
