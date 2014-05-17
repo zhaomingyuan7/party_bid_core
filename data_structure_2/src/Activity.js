@@ -21,9 +21,3 @@ Activity.activity_ids = function(){
     var activity_ids = JSON.parse(localStorage.getItem("activity_ids"))
     return activity_ids.length;
 }
-Bidding.price_num_count = function (activity, bid) {
-    return _.countBy(Bidding.is_current_bidding(activity, bid),
-        function (name) {
-            return name.price
-        });
-}
