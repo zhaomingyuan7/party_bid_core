@@ -89,10 +89,10 @@ describe("Bids and Bidding Render", function () {
     it("should show minimum not repeatable bidding", function () {
         var biddings = Bidding.transform_biddings_to_view_model("second activity", "竞价2");
 
-        expect(biddings.length).toBe(3);
-        expect(biddings[0].name).toBe("仝键");
-        expect(biddings[0].phone).toBe("13600000000");
-        expect(biddings[0].price).toBe("10");
+        expect(biddings.length).toBe(1);
+        expect(biddings[0].name).toBe("于硕");
+        expect(biddings[0].phone).toBe("15600000000");
+        expect(biddings[0].price).toBe("12");
     });
 
 

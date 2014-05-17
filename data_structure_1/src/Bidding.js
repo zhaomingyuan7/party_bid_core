@@ -45,10 +45,41 @@ Bidding.transform_bids_to_view_model = function(name){
     return bids;
 }
 Bidding.transform_biddings_to_view_model = function(name,bid){
-    var bids =  _.filter(Bidding.transform_bids_to_view_model(name),function(bids){
-        return bids.name == bid
+    return  [Bidding.count_price_first_information(name, bid)];
+}
+Bidding.current_bidding = function(name,bid){
+    var activities = JSON.parse(localStorage.activities)
+    var current_activity = _.filter(activities, function(activity){
+        return activity.name == name
+    });
+    var bids = current_activity.bids
+
+    var current_bids = _.find(current_activity[0].bids,function(bid_name){
+        return bid_name.name == bid
     })
-    var current_bids = bids[0].biddings;
-    localStorage.current_bids = JSON.stringify(current_bids);
-    return current_bids;
+    return current_bids.biddings
+
+}
+Bidding.price_num_count = function (name, bid) {
+    return _.countBy(Bidding.current_bidding(name, bid),
+        function (activity) {
+            return activity.price
+        });
+}
+Bidding.price_and_num = function (name, bid) {
+    return _.map(Bidding.price_num_count(name, bid), function (value, key) {
+        return {"price": key, "count": value}
+    })
+}
+Bidding.count_price_one = function (name, bid) {
+    return _.find(Bidding.price_and_num(name, bid),
+        function (name) {
+            return name.count == 1
+        })
+}
+Bidding.count_price_first_information = function (name, bid) {
+    return _.find(Bidding.current_bidding(name, bid),
+        function (bid_name) {
+            return bid_name.price == Bidding.count_price_one(name, bid).price
+        })
 }
